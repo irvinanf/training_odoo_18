@@ -1,0 +1,1 @@
+# training_odoo_18
