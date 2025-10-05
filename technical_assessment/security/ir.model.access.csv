@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_master_ruangan_manager,access_master_ruangan_manager,model_master_ruangan,booking_room_manager,1,1,1,1
+access_master_ruangan_admin,access_master_ruangan_admin,model_master_ruangan,booking_room_admin,1,1,1,1
+access_pemesanan_ruangan_manager,access_pemesanan_ruangan_manager,model_pemesanan_ruangan,booking_room_manager,1,1,1,1
+access_pemesanan_ruangan_admin,access_pemesanan_ruangan_admin,model_pemesanan_ruangan,booking_room_admin,1,1,1,1

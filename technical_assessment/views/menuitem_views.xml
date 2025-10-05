@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="pemesanan_ruangan_root" name="Booking Ruangan"/>
+        <menuitem id="pemesanan_ruangan_submenu1" name="Ruang Meeting" parent="pemesanan_ruangan_root" action="master_ruangan_view"/>
+        <menuitem id="pemesanan_ruangan_submenu2" name="Pemesanan Ruang Meeting" parent="pemesanan_ruangan_root" action="pemesanan_ruangan_view"/>
+    </data>
+</odoo>
