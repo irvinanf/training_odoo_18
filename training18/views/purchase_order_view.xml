@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="test_purchase_order_search_view" model="ir.ui.view">
+            <field name="name">test.purchase.order.view.search</field>
+            <field name="model">test.purchase.order</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="supplier_line_id"/>
+                    <field name="supplier_line_id" string="Supplier Name" context="{'group_by' : 'supplier_line_id'}"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="test_purchase_order_list_view" model="ir.ui.view">
+            <field name="name">test.purchase.order.view.list</field>
+            <field name="model">test.purchase.order</field>
+            <field name="arch" type="xml">
+                <list string="Purchase Order-PO">
+                    <field name="name" string="No. Purchase Order" />
+                    <field name="order_date" string="Order Date" />
+                    <field name="supplier_line_id" string="Supplier" />
+                    <field name="company_line_id" string="Company" />
+                    <field name="status" />
+                </list>
+            </field>
+        </record>
+
+        <record id="test_purchase_order_form_view" model="ir.ui.view">
+            <field name="name">test.purchase.order.form.view</field>
+            <field name="model">test.purchase.order</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Order">
+                    <header>
+                        <button string="Approve" name="action_approve" type="object" class="btn_primary" invisible="status != 'draft'"/>
+                        <button string="Confirm" name="action_confirm" type="object" class="btn_primary" invisible="status != 'approved'"/>
+                        <field name="status" widget="statusbar" statusbar_visible="draft,approved,done"/> #fieldnya harus one2many
+                    </header>
+                    <sheet>
+                        <group string="Purchase Order">
+                            <field name="branch"/>
+                            <field name="division"/>
+                            <field name="supplier_line_id"/>
+                            <field name="supplier_reference"/>
+                            <field name="supplier_doc_date"/>
+                            <field name="payment_term"/>
+                            <field name="currency"/>
+                            <field name="company_line_id"/>
+                            <field name="PO_type"/>
+                            <field name="gr_physical_date"/>
+                            <field name="order_date"/>
+                            <field name="deliver_to"/>
+                        </group>
+                        <notebook>
+                            <page string="Products">
+                                <field name="product_line_ids">
+                                    <list> 
+                                        <field name="product_PO"/>
+                                        <!-- <field name="company_line_id" /> -->
+                                        <field name="purchase_qty" />
+                                        <field name="satuan_unit" />
+                                        <field name="unit_price" />
+                                        <field name="disc_total" />
+                                        <field name="taxes" />
+                                        <field name="subtotal" />
+                                    </list>
+                                    <form>
+                                        <group string="Product">
+                                            <field name="product_PO"/>
+                                            <field name="construction_year" />
+                                            <field name="chasis" />
+                                            <field name="no_engine" />
+                                        </group>
+                                        <group string="Purchase">
+                                            <field name="unit_price" />
+                                            <field name="disc_dealer" />
+                                            <field name="disc_dealer_top" />
+                                            <field name="disc_lain" />
+                                            <field name="taxes" />
+                                            <field name="freight_cost" />
+                                            <field name="purchase_qty" />
+                                            <field name="pph22" />
+                                        </group>
+                                        <group string="Info">
+                                            <field name="ppnbm" />
+                                            <field name="disc_total" />
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="test_purchase_order_sequence" model="ir.sequence">
+            <field name="name">No. Purchase Order</field>
+            <field name="code">test.purchase.order</field>
+            <field name="prefix">PO/</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>        
+    
+        <record id="test_purchase_order_view" model="ir.actions.act_window">
+            <field name="name">Purchase Order</field>
+            <field name="res_model">test.purchase.order</field>
+            <field name="view_mode">list,form</field>
+        </record>        
+    
+    </data>
+</odoo>
