@@ -1,0 +1,19 @@
+[options]
+; Example only. Adapt paths and credentials to your existing Odoo 18 deployment.
+; Do not replace your current production config without comparing every setting.
+
+admin_passwd = CHANGE_ME
+db_host = db
+db_port = 5432
+db_user = odoo
+db_password = CHANGE_ME
+addons_path = /mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons
+data_dir = /var/lib/odoo
+
+; Optional: set log file/level according to your existing deployment.
+; logfile = /var/log/odoo/odoo.log
+; log_level = info
+
+; The internal secret must match ANONYMIZER_VALIDATION_SECRET in FastAPI.
+; Prefer injecting this environment variable through Docker Compose / secret manager.
+; ANONYMIZER_VALIDATION_SECRET = CHANGE_ME
