@@ -1,7 +1,0 @@
-<odoo>
-    <data>
-        <menuitem id="root_level" name="Purchase Order"/>
-        <menuitem id="second_level" name="Purchase Order" parent="root_level" action="test_purchase_order_view"/>
-        <menuitem id="second_level_2" name="Products" parent="root_level" action="test_master_product_view"/>
-    </data>
-</odoo>
