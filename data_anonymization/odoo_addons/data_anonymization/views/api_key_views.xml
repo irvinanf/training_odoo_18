@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_data_anonymization_api_key_list" model="ir.ui.view">
+        <field name="name">data.anonymization.api.key.list</field>
+        <field name="model">data.anonymization.api.key</field>
+        <field name="arch" type="xml">
+            <list string="API Keys" create="0">
+                <field name="name"/>
+                <field name="key_prefix"/>
+                <field name="active" widget="boolean_toggle"/>
+                <field name="expires_at"/>
+                <field name="last_used_at"/>
+                <field name="created_by"/>
+                <button name="action_revoke" type="object" string="Revoke"
+                        icon="fa-ban" invisible="not active"/>
+                <button name="action_reactivate" type="object" string="Reactivate"
+                        icon="fa-check" invisible="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_data_anonymization_api_key_form" model="ir.ui.view">
+        <field name="name">data.anonymization.api.key.form</field>
+        <field name="model">data.anonymization.api.key</field>
+        <field name="arch" type="xml">
+            <form string="API Key">
+                <header>
+                    <button name="action_revoke" type="object" string="Revoke"
+                            class="btn-secondary" invisible="not active"/>
+                    <button name="action_reactivate" type="object" string="Reactivate"
+                            class="btn-secondary" invisible="active"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="key_prefix" readonly="1"/>
+                        <field name="expires_at"/>
+                        <field name="last_used_at" readonly="1"/>
+                        <field name="created_by" readonly="1"/>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        Secret API key tidak dapat ditampilkan ulang.
+                        Buat key baru jika secret hilang.
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_data_anonymization_api_keys" model="ir.actions.act_window">
+        <field name="name">API Keys</field>
+        <field name="res_model">data.anonymization.api.key</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_data_anonymization_api_key_wizard_form" model="ir.ui.view">
+        <field name="name">data.anonymization.api.key.wizard.form</field>
+        <field name="model">data.anonymization.api.key.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate API Key">
+                <sheet>
+                    <group>
+                        <field name="name" readonly="key_created"/>
+                        <field name="expires_at" readonly="key_created"/>
+                    </group>
+                    <div class="alert alert-warning" role="alert"
+                         invisible="key_created">
+                        Key rahasia hanya ditampilkan satu kali setelah dibuat.
+                        Simpan di tempat aman sebelum menutup jendela.
+                    </div>
+                    <group invisible="not key_created">
+                        <field name="generated_key" readonly="1"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_generate" type="object"
+                            string="Generate API Key" class="oe_highlight"
+                            invisible="key_created"/>
+                    <button string="Close" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_data_anonymization_api_key_wizard"
+            model="ir.actions.act_window">
+        <field name="name">Generate API Key</field>
+        <field name="res_model">data.anonymization.api.key.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_data_anonymization_api_key_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_data_anonymization_api_key"
+              name="API Keys"
+              parent="menu_data_anonymization_root"
+              action="action_data_anonymization_api_keys"
+              sequence="20"
+              groups="base.group_system"/>
+    <menuitem id="menu_data_anonymization_api_key_generate"
+              name="Generate API Key"
+              parent="menu_data_anonymization_root"
+              action="action_data_anonymization_api_key_wizard"
+              sequence="30"
+              groups="base.group_system"/>
+</odoo>
