@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_data_anonymization_wizard_user,data.anonymization.wizard.user,model_data_anonymization_wizard,base.group_user,1,1,1,1
+access_data_anonymization_wizard_line_user,data.anonymization.wizard.line.user,model_data_anonymization_wizard_line,base.group_user,1,1,1,1
+access_data_anonymization_api_key_admin,data.anonymization.api.key.admin,model_data_anonymization_api_key,base.group_system,1,1,1,1
+access_data_anonymization_api_key_wizard_admin,data.anonymization.api.key.wizard.admin,model_data_anonymization_api_key_wizard,base.group_system,1,1,1,1
