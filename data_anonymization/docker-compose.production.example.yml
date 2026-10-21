@@ -1,0 +1,15 @@
+services:
+  anonymizer-service:
+    build:
+      context: ./anonymizer_service
+    restart: unless-stopped
+    env_file:
+      - ./anonymizer_service/.env
+    expose:
+      - "8000"
+    networks:
+      - anonymizer-internal
+
+networks:
+  anonymizer-internal:
+    driver: bridge

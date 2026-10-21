@@ -1,0 +1,20 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+odoo.conf
+*.pem
+*.key
+
+# Python artifacts
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local databases / customer data
+*.dump
+*.sql
+*.sqlite3
+uploads/
+output/
